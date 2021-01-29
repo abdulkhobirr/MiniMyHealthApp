@@ -26,8 +26,10 @@
         android:id="@+id/rvChat"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:paddingVertical="20dp"
-        tools:listitem="@layout/item_my_message"
+        android:paddingVertical="15dp"
+        android:clipToPadding="false"
+        android:clipChildren="false"
+        tools:listitem="@layout/item_other_message"
         app:layout_constraintTop_toBottomOf="@id/toolbarChat"
         app:layout_constraintBottom_toTopOf="@id/clMessageArea"/>
 

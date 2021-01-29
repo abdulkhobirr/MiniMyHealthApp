@@ -1,13 +1,19 @@
 package com.example.myhealthdiary.view.home
 
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.View
+import androidx.lifecycle.ViewModelProvider
 import com.example.myhealthdiary.databinding.ActivityHomeBinding
 import com.example.myhealthdiary.utils.pref.PrefManager
 import com.example.myhealthdiary.utils.pref.UserPreferenceKey
 import com.example.myhealthdiary.view.diagnosis.DiagnosisChatActivity
+import com.example.myhealthdiary.view.login.LoginActivity
+import com.example.myhealthdiary.viewmodel.LoginViewModel
 import com.google.android.material.appbar.AppBarLayout
 import org.jetbrains.anko.clearTask
 import org.jetbrains.anko.intentFor
@@ -20,6 +26,10 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
 
     private val preferenceManager: PrefManager by inject()
+
+    private val loginViewModel by lazy {
+        ViewModelProvider(this).get(LoginViewModel::class.java)
+    }
 
     companion object {
         fun start(context: Context) {
@@ -36,20 +46,23 @@ class HomeActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        initUI()
+        loginViewModel.getUserData(preferenceManager.getString(UserPreferenceKey.USERNAME))
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            initUI()
+        }, 500)
 
         initActions()
     }
 
     private fun initUI(){
-        val name = preferenceManager.getString(UserPreferenceKey.USERNAME)
-        binding.tvWelcome.text = name
+        binding.tvUsername.text = String.format("Halo, ${loginViewModel.userData?.Nama}")
 
         binding.appbarLayoutMain.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener(){ appBarLayout, verticalOffset ->
             when{
                 abs(verticalOffset) - appBarLayout.totalScrollRange == 0 -> {
                     //Collapsed
-                    binding.tvUsernameToolbar.text = name
+                    binding.tvUsernameToolbar.text = String.format("Halo, ${loginViewModel.userData?.Nama}")
                     binding.ivUser.visibility = View.INVISIBLE
                     binding.tvUsername.visibility = View.INVISIBLE
                     binding.tvWelcome.visibility = View.INVISIBLE
@@ -86,6 +99,11 @@ class HomeActivity : AppCompatActivity() {
         binding.btnBukuCatatan.setOnClickListener {  }
         binding.btnRumahSakit.setOnClickListener {  }
         binding.btnMyRecords.setOnClickListener {  }
-        binding.btnSambungGadget.setOnClickListener {  }
+        binding.btnSambungGadget.setOnClickListener {
+            preferenceManager.removeKey(UserPreferenceKey.IS_LOGGED_IN)
+            preferenceManager.removeKey(UserPreferenceKey.USERNAME)
+
+            LoginActivity.start(this)
+        }
     }
 }

@@ -70,7 +70,6 @@ class InputDataActivity : AppCompatActivity(), GenderOnClickListener, DatePicker
                             Gender = binding.edtJenisKelamin.text.toString()
                     ))
                     preferenceManager.apply {
-                        saveString(UserPreferenceKey.USERNAME, binding.edtNama.text.toString())
                         saveBoolean(UserPreferenceKey.IS_LOGGED_IN, true)
                     }
                     HomeActivity.start(this)

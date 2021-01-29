@@ -36,6 +36,8 @@
         android:layout_marginHorizontal="20dp"
         android:background="@drawable/bg_edittext"
         android:hint="Email atau nomor telepon"
+        android:inputType="text"
+        android:maxLines="1"
         app:layout_constraintTop_toBottomOf="@id/glRegist"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -49,6 +51,8 @@
         android:layout_marginHorizontal="20dp"
         android:background="@drawable/bg_edittext"
         android:hint="Kata Sandi"
+        android:maxLines="1"
+        android:inputType="textPassword"
         app:layout_constraintTop_toBottomOf="@id/edtUsername"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -62,6 +66,8 @@
         android:layout_marginHorizontal="20dp"
         android:background="@drawable/bg_edittext"
         android:hint="Konfirmasi Kata Sandi"
+        android:inputType="textPassword"
+        android:maxLines="1"
         app:layout_constraintTop_toBottomOf="@id/edtPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

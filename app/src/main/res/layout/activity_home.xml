@@ -86,7 +86,7 @@
                         android:textColor="@android:color/white"
                         app:layout_collapseMode="parallax"
                         android:layout_gravity="bottom"
-                        android:text="Halo, abcd"
+                        android:text="Halo, user"
                         android:textStyle="bold"/>
                     <TextView
                         android:id="@+id/tvWelcome"
