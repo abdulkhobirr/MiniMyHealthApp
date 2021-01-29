@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.login.LoginActivity">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.27"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvAppName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="15dp"
+        app:layout_constraintTop_toBottomOf="@id/glTop"
+        android:text="MyHealth Diary"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="30sp"
+        android:gravity="center"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilUsername"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginHorizontal="25dp"
+        style="@style/Widget.Design.TextInputLayout"
+        app:layout_constraintTop_toBottomOf="@id/tvAppName">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtUsername"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email atau nomor telepon" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="25dp"
+        app:passwordToggleEnabled="true"
+        style="@style/Widget.Design.TextInputLayout"
+        app:layout_constraintTop_toBottomOf="@id/tilUsername">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/edtUsername"
+            android:hint="Password"
+            android:inputType="textPassword" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvLupaPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="25dp"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintTop_toBottomOf="@id/tilPassword"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="Lupa password ?"
+        android:textStyle="bold"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/btnSetelUlang"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="5dp"
+        android:background="?selectableItemBackground"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintTop_toBottomOf="@id/tilPassword"
+        app:layout_constraintStart_toEndOf="@id/tvLupaPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="Setel Ulang"
+        android:textStyle="bold"
+        android:textColor="@color/blue"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginHorizontal="25dp"
+        app:layout_constraintTop_toBottomOf="@id/btnSetelUlang"
+        android:text="Masuk atau Daftar"
+        android:textAllCaps="false"/>
+
+    <View
+        android:id="@+id/divider1"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginStart="25dp"
+        app:layout_constraintTop_toTopOf="@id/tvAtau"
+        app:layout_constraintBottom_toBottomOf="@id/tvAtau"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/tvAtau"
+        android:background="@color/lightgrey"/>
+
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="25dp"
+        app:layout_constraintTop_toTopOf="@id/tvAtau"
+        app:layout_constraintBottom_toBottomOf="@id/tvAtau"
+        app:layout_constraintStart_toEndOf="@id/tvAtau"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@color/lightgrey"/>
+
+    <TextView
+        android:id="@+id/tvAtau"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/divider1"
+        app:layout_constraintEnd_toStartOf="@id/divider2"
+        android:layout_marginTop="15dp"
+        android:text="atau menggunakan"
+        app:layout_constraintTop_toBottomOf="@id/btnLogin"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnFbLogin"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="10dp"
+        android:backgroundTint="@color/lightgrey"
+        app:layout_constraintTop_toBottomOf="@id/tvAtau"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btnGoogleLogin"
+        android:text="Facebook"
+        android:textColor="@color/black"
+        android:textAllCaps="false"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnGoogleLogin"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="25dp"
+        android:backgroundTint="@color/lightgrey"
+        app:layout_constraintTop_toBottomOf="@id/tvAtau"
+        app:layout_constraintStart_toEndOf="@id/btnFbLogin"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="Google"
+        android:textColor="@color/black"
+        android:textAllCaps="false"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
