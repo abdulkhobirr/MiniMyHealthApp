@@ -1,26 +1,32 @@
 package com.example.myhealthdiary.view.login
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
-import androidx.core.view.isEmpty
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.example.myhealthdiary.R
 import com.example.myhealthdiary.databinding.ActivityLoginBinding
 import com.example.myhealthdiary.view.home.HomeActivity
 import com.example.myhealthdiary.viewmodel.LoginViewModel
-import org.jetbrains.anko.startActivity
-import org.jetbrains.anko.toast
+import org.jetbrains.anko.clearTask
+import org.jetbrains.anko.intentFor
+import org.jetbrains.anko.newTask
 
 class LoginActivity : AppCompatActivity() {
     private val loginViewModel by lazy {
         ViewModelProvider(this).get(LoginViewModel::class.java)
     }
-
     private lateinit var binding: ActivityLoginBinding
+
+    companion object {
+        fun start(context: Context) {
+            context.startActivity(
+                context.intentFor<LoginActivity>(
+                ).clearTask().newTask()
+            )
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,8 +35,6 @@ class LoginActivity : AppCompatActivity() {
         setContentView(view)
 
         initActions()
-
-        initObservables()
     }
 
     private fun initActions(){
@@ -54,23 +58,5 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
         }
-    }
-
-    private fun initObservables(){
-//        loginViewModel.user?.observe(this, {
-//            Log.d("LoginData: ", it.toString())
-//            if (it.isNullOrEmpty()){
-//                val intent = Intent(this, RegisterActivity::class.java).apply {
-//                    putExtra("Username", binding.edtUsername.text.toString())
-//                    putExtra("Password", binding.edtPassword.text.toString())
-//                }
-//                startActivity(intent)
-//            } else {
-//                val intent = Intent(this, HomeActivity::class.java).apply {
-//                    putExtra("DATA", it[0])
-//                }
-//                startActivity(intent)
-//            }
-//        })
     }
 }

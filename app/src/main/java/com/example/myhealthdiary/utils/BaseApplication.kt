@@ -2,10 +2,7 @@ package com.example.myhealthdiary.utils
 
 import android.app.Application
 import android.content.Context
-import com.example.myhealthdiary.di.apiModule
-import com.example.myhealthdiary.di.chatModule
-import com.example.myhealthdiary.di.rxModule
-import com.example.myhealthdiary.di.utilityModule
+import com.example.myhealthdiary.di.*
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import org.koin.core.module.Module
@@ -32,7 +29,8 @@ class BaseApplication : Application() {
             apiModule,
             rxModule,
             utilityModule,
-            chatModule
+            chatModule,
+            preferenceModule
         )
     }
 }

@@ -4,10 +4,15 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.annotation.RequiresApi
+import androidx.lifecycle.ViewModelProvider
+import com.example.myhealthdiary.data.user.entity.User
 import com.example.myhealthdiary.databinding.ActivityInputDataBinding
 import com.example.myhealthdiary.view.home.HomeActivity
-import org.jetbrains.anko.startActivity
+import com.example.myhealthdiary.viewmodel.LoginViewModel
+import com.example.myhealthdiary.utils.pref.PrefManager
+import com.example.myhealthdiary.utils.pref.UserPreferenceKey
 import org.jetbrains.anko.toast
+import org.koin.android.ext.android.inject
 import java.time.LocalDate
 import java.time.Period
 
@@ -16,12 +21,23 @@ class InputDataActivity : AppCompatActivity(), GenderOnClickListener, DatePicker
     private var initDay = 1
     private var initMonth = 0
     private var initYear = 2000
+    private var username = ""
+    private var password = ""
+
+    private val loginViewModel by lazy {
+        ViewModelProvider(this).get(LoginViewModel::class.java)
+    }
+
+    private val preferenceManager: PrefManager by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityInputDataBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+
+        username = intent.getStringExtra("Username").toString()
+        password = intent.getStringExtra("Password").toString()
 
         initActions()
     }
@@ -46,7 +62,18 @@ class InputDataActivity : AppCompatActivity(), GenderOnClickListener, DatePicker
                 binding.edtTTL.text?.isEmpty() == true -> {}
                 binding.edtJenisKelamin.text?.isEmpty() == true -> {}
                 else -> {
-                    startActivity<HomeActivity>()
+                    loginViewModel.addUser(User(
+                            Username = username,
+                            Password = password,
+                            Nama = binding.edtNama.text.toString(),
+                            Ttl = binding.edtTTL.text.toString(),
+                            Gender = binding.edtJenisKelamin.text.toString()
+                    ))
+                    preferenceManager.apply {
+                        saveString(UserPreferenceKey.USERNAME, binding.edtNama.text.toString())
+                        saveBoolean(UserPreferenceKey.IS_LOGGED_IN, true)
+                    }
+                    HomeActivity.start(this)
                 }
             }
         }
@@ -62,7 +89,6 @@ class InputDataActivity : AppCompatActivity(), GenderOnClickListener, DatePicker
         initMonth = month.toInt()
         initYear = year.toInt()
         binding.edtTTL.setText(String.format("$initDay - ${initMonth+1} - $initYear"))
-
 
         val age = getAge(initYear, initMonth+1, initDay)
         binding.edtTahun.setText(age.toString())
