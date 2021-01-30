@@ -1,7 +1,6 @@
 package com.example.myhealthdiary.view.home
 
 import android.content.Context
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -22,7 +21,7 @@ import org.jetbrains.anko.startActivity
 import org.koin.android.ext.android.inject
 import kotlin.math.abs
 
-class HomeActivity : AppCompatActivity() {
+class HomeActivity : AppCompatActivity(), OnUserMenuClickListener {
     private lateinit var binding: ActivityHomeBinding
 
     private val preferenceManager: PrefManager by inject()
@@ -91,6 +90,10 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun initActions(){
+        binding.flUser.setOnClickListener {
+            UserMenuFragment.newInstance(this).show(supportFragmentManager, "")
+        }
+
         binding.btnDiagnosisPintar.setOnClickListener {
             startActivity<DiagnosisChatActivity>()
         }
@@ -99,11 +102,13 @@ class HomeActivity : AppCompatActivity() {
         binding.btnBukuCatatan.setOnClickListener {  }
         binding.btnRumahSakit.setOnClickListener {  }
         binding.btnMyRecords.setOnClickListener {  }
-        binding.btnSambungGadget.setOnClickListener {
-            preferenceManager.removeKey(UserPreferenceKey.IS_LOGGED_IN)
-            preferenceManager.removeKey(UserPreferenceKey.USERNAME)
+        binding.btnSambungGadget.setOnClickListener {  }
+    }
 
-            LoginActivity.start(this)
-        }
+    override fun logout() {
+        preferenceManager.removeKey(UserPreferenceKey.IS_LOGGED_IN)
+        preferenceManager.removeKey(UserPreferenceKey.USERNAME)
+
+        LoginActivity.start(this)
     }
 }
