@@ -14,16 +14,17 @@ import com.example.myhealthdiary.databinding.ActivityLoginBinding
 import com.example.myhealthdiary.utils.pref.PrefManager
 import com.example.myhealthdiary.utils.pref.UserPreferenceKey
 import com.example.myhealthdiary.view.home.HomeActivity
+import com.example.myhealthdiary.view.register.RegisterActivity
 import com.example.myhealthdiary.viewmodel.LoginViewModel
 import org.jetbrains.anko.clearTask
 import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.newTask
 import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginActivity : AppCompatActivity() {
-    private val loginViewModel by lazy {
-        ViewModelProvider(this).get(LoginViewModel::class.java)
-    }
+    private val loginViewModel: LoginViewModel by viewModel()
+
     private lateinit var binding: ActivityLoginBinding
 
     private val preferenceManager: PrefManager by inject()

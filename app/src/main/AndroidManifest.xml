@@ -20,9 +20,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.login.InputDataActivity" />
+        <activity android:name=".view.register.InputDataActivity" />
         <activity android:name=".view.diagnosis.DiagnosisChatActivity" />
-        <activity android:name=".view.login.RegisterActivity" />
+        <activity android:name=".view.register.RegisterActivity" />
         <activity android:name=".view.login.LoginActivity">
 
         </activity>

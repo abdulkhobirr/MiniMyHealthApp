@@ -42,6 +42,5 @@ class SplashActivity : AppCompatActivity() {
         }else{
             LoginActivity.start(this)
         }
-        finish()
     }
 }

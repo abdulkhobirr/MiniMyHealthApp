@@ -35,4 +35,9 @@ class DiagnosisChatViewModel(
             })
             .addTo(disposable)
     }
+
+    override fun onCleared() {
+        if (!disposable.isDisposed) disposable.dispose()
+        super.onCleared()
+    }
 }

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/lightgrey"
-    tools:context=".view.login.InputDataActivity">
+    tools:context=".view.register.InputDataActivity">
 
     <Toolbar
         android:id="@+id/toolbarInputData"
@@ -85,6 +85,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="5dp"
+        android:visibility="invisible"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         app:boxStrokeColor="@color/colorTransparent"
         app:boxStrokeWidth="0dp"

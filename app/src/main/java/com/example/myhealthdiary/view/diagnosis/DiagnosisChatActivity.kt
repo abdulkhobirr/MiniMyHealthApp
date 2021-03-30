@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myhealthdiary.data.diagnosischat.model.Message
 import com.example.myhealthdiary.data.diagnosischat.model.PostChatBody
@@ -64,10 +65,9 @@ class DiagnosisChatActivity : AppCompatActivity(), OnClickPayload {
 
         binding.rvPayload.apply {
             layoutManager =
-                    LinearLayoutManager(
+                    GridLayoutManager(
                             context,
-                            LinearLayoutManager.VERTICAL,
-                            false
+                            3
                     )
             setHasFixedSize(true)
             adapter = payloadAdapter
@@ -77,7 +77,6 @@ class DiagnosisChatActivity : AppCompatActivity(), OnClickPayload {
     private fun initObservables(){
         chatViewModel.chat.observe(this, Observer {
             when (it) {
-                is Result.Default -> {}
                 is Result.Empty -> {}
                 is Result.Failure -> {}
                 is Result.Success -> {

@@ -40,15 +40,9 @@ class DiagnosisChatAdapter(): RecyclerView.Adapter<DiagnosisChatAdapter.ViewHold
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return if(viewType == VIEW_TYPE_MY_MESSAGE) {
             val binding = ItemMyMessageBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-    //            MyMessageViewHolder(
-    //                    LayoutInflater.from(parent.context).inflate(R.layout.item_my_message, parent, false)
-    //            )
             MyMessageViewHolder(binding)
         } else {
             val binding = ItemOtherMessageBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-    //            OtherMessageViewHolder(
-    //                    LayoutInflater.from(parent.context).inflate(R.layout.item_other_message, parent, false)
-    //            )
             OtherMessageViewHolder(binding)
         }
     }

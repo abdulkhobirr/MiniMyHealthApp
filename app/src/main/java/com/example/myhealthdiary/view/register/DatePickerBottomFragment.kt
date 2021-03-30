@@ -1,4 +1,4 @@
-package com.example.myhealthdiary.view.login
+package com.example.myhealthdiary.view.register
 
 import android.os.Bundle
 import android.view.LayoutInflater

@@ -1,4 +1,4 @@
-package com.example.myhealthdiary.view.login
+package com.example.myhealthdiary.view.register
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity

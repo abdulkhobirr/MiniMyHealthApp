@@ -9,5 +9,4 @@ import retrofit2.http.POST
 interface DiagnosisChatApiClient {
     @POST(".")
     fun postChat( @Body body: PostChatBody): Single<ChatResponse>
-
 }

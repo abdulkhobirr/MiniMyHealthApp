@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.View
-import androidx.lifecycle.ViewModelProvider
 import com.example.myhealthdiary.databinding.ActivityHomeBinding
 import com.example.myhealthdiary.utils.pref.PrefManager
 import com.example.myhealthdiary.utils.pref.UserPreferenceKey
@@ -19,6 +18,7 @@ import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.newTask
 import org.jetbrains.anko.startActivity
 import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import kotlin.math.abs
 
 class HomeActivity : AppCompatActivity(), OnUserMenuClickListener {
@@ -26,9 +26,7 @@ class HomeActivity : AppCompatActivity(), OnUserMenuClickListener {
 
     private val preferenceManager: PrefManager by inject()
 
-    private val loginViewModel by lazy {
-        ViewModelProvider(this).get(LoginViewModel::class.java)
-    }
+    private val loginViewModel: LoginViewModel by viewModel()
 
     companion object {
         fun start(context: Context) {
@@ -57,7 +55,7 @@ class HomeActivity : AppCompatActivity(), OnUserMenuClickListener {
     private fun initUI(){
         binding.tvUsername.text = String.format("Halo, ${loginViewModel.userData?.Nama}")
 
-        binding.appbarLayoutMain.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener(){ appBarLayout, verticalOffset ->
+        binding.appbarLayoutMain.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
             when{
                 abs(verticalOffset) - appBarLayout.totalScrollRange == 0 -> {
                     //Collapsed

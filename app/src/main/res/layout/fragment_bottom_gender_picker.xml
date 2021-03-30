@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:paddingBottom="20dp"
-    tools:context=".view.login.GenderPickerBottomFragment">
+    tools:context=".view.register.GenderPickerBottomFragment">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/llToolbarGender"
         android:layout_width="match_parent"

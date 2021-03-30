@@ -1,6 +1,5 @@
 package com.example.myhealthdiary.data.user.dao
 
-import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.example.myhealthdiary.data.user.entity.User
 

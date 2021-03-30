@@ -1,8 +1,9 @@
-package com.example.myhealthdiary.view.login
+package com.example.myhealthdiary.view.register
 
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModelProvider
 import com.example.myhealthdiary.data.user.entity.User
@@ -13,6 +14,7 @@ import com.example.myhealthdiary.utils.pref.PrefManager
 import com.example.myhealthdiary.utils.pref.UserPreferenceKey
 import org.jetbrains.anko.toast
 import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.time.LocalDate
 import java.time.Period
 
@@ -24,9 +26,7 @@ class InputDataActivity : AppCompatActivity(), GenderOnClickListener, DatePicker
     private var username = ""
     private var password = ""
 
-    private val loginViewModel by lazy {
-        ViewModelProvider(this).get(LoginViewModel::class.java)
-    }
+    private val loginViewModel: LoginViewModel by viewModel()
 
     private val preferenceManager: PrefManager by inject()
 
@@ -47,7 +47,6 @@ class InputDataActivity : AppCompatActivity(), GenderOnClickListener, DatePicker
             this.supportFragmentManager.let {
                 DatePickerBottomFragment.newInstance(this, initDay, initMonth, initYear).show(it, "")
             }
-            toast("Clicked")
         }
 
         binding.edtJenisKelamin.setOnClickListener {
@@ -91,6 +90,7 @@ class InputDataActivity : AppCompatActivity(), GenderOnClickListener, DatePicker
 
         val age = getAge(initYear, initMonth+1, initDay)
         binding.edtTahun.setText(age.toString())
+        binding.tilTahun.visibility = View.VISIBLE
     }
 
     @RequiresApi(Build.VERSION_CODES.O)

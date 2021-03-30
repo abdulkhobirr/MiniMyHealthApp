@@ -30,7 +30,8 @@ class BaseApplication : Application() {
             rxModule,
             utilityModule,
             chatModule,
-            preferenceModule
+            preferenceModule,
+            userModule
         )
     }
 }
