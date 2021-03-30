@@ -22,19 +22,13 @@ fun <T> genericErrorHandler(e: Throwable, result: MutableLiveData<Result<T>>) {
         is JsonSyntaxException -> result.value = Result.fail(
             e,
             "Terjadi kesalahan pada data",
-            "Data error atau tidak ditemukan silahkan hubungi Pustipanda."
+            "Data error atau tidak ditemukan."
         )
         is HttpException -> result.value =
             when {
                 HttpException(e.response()!!).response()?.code() == 500 -> Result.fail(
                     title = "Terjadi kesalahan pada server",
-                    message = "Silahkan menghubungi pustipanda."
-                )
-                HttpException(e.response()!!).response()?.errorBody()?.string() ==
-                        "Tidak mengikuti perkuliahan ini" -> Result.fail(
-                    e,
-                    "Data tidak tersedia",
-                    "Anda tidak mengikuti perkuliahan ini"
+                    message = ""
                 )
                 HttpException(e.response()!!).response()?.code() == 404 -> Result.fail(
                     e,
